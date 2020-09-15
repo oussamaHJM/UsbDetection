@@ -1,13 +1,13 @@
 /* DATE   : LE 15/05/2017
- * AUTEUR : Khalid EL GHOLAMI
- * OBJET  :  (Programme de détection de l'insersion d'une clé USB (ISGA SETTAT)
+ * AUTEUR : EL-HAJJAM Oussama
+ * OBJET  :  (Programme de dï¿½tection de l'insersion d'une clï¿½ USB (ISGA SETTAT)
  */
 
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include <windows.h> // Pour exécuter des commandes MS-DOS
-#include <locale.h>  // pour le support des charactères spéciaux français
+#include <windows.h> // Pour exï¿½cuter des commandes MS-DOS
+#include <locale.h>  // pour le support des charactï¿½res spï¿½ciaux franï¿½ais
 
 
 char tous_les_disques[30];
@@ -18,33 +18,33 @@ char getRemovableDisk();
 
 
 int main(void){
-    setlocale(LC_CTYPE,""); // pour le support des charactères spéciaux français
+    setlocale(LC_CTYPE,""); // pour le support des charactï¿½res spï¿½ciaux franï¿½ais
     printf("\t******** ISGA Malware (^_-) ************\n\
-<** Détecteur de l'insertion d'une clé USB ou périférique amouvible **>\n\n\
-   Détection en cours ");
+<** Dï¿½tecteur de l'insertion d'une clï¿½ USB ou pï¿½rifï¿½rique amouvible **>\n\n\
+   Dï¿½tection en cours ");
     char lettre_du_lecteur = getRemovableDisk();
     while(1){
         lettre_du_lecteur = getRemovableDisk();
         if(lettre_du_lecteur!='0'){
-            printf("\nNouveau disque inseré : %c:/ \nContenu du disque (^_^):\n", lettre_du_lecteur);
+            printf("\nNouveau disque inserï¿½ : %c:/ \nContenu du disque (^_^):\n", lettre_du_lecteur);
             char commande[200]="dir ";
-            size_t len = strlen(commande);//avoir la longeure de se qui est déja stocker dans commande ("dir ")
+            size_t len = strlen(commande);//avoir la longeure de se qui est dï¿½ja stocker dans commande ("dir ")
             commande[len]=lettre_du_lecteur;//mettre la lettre du lecteur a la derniere case de commande ("dir G")
             commande[len+1]='\0';
             strcat(commande,":\\");
             system(commande);
-            printf("\n Détection en cours ");
+            printf("\n Dï¿½tection en cours ");
         }
         else
             printf("|");
-        Sleep(1000); // La fréquence de rafraichissement en millisecondes
+        Sleep(1000); // La frï¿½quence de rafraichissement en millisecondes
     }
 
     return 0;
 }
 
 
-char getRemovableDisk(){// fonction pour obtenir le "caractère" du disk amovible
+char getRemovableDisk(){// fonction pour obtenir le "caractï¿½re" du disk amovible
     char disque='0';
 
     char szLogicalDrives[MAX_PATH];
@@ -55,7 +55,7 @@ char getRemovableDisk(){// fonction pour obtenir le "caractère" du disk amovible
     int i,j,k,trouve;
     for(i=0; i<dwResult; i++)
     {
-        if(szLogicalDrives[i]>='A' && szLogicalDrives[i]<='Z')//il faut que le caractère de disk amovible >=A et <=Z
+        if(szLogicalDrives[i]>='A' && szLogicalDrives[i]<='Z')//il faut que le caractï¿½re de disk amovible >=A et <=Z
         {
             len = strlen(disques_actuels);
             disques_actuels[len]=szLogicalDrives[i];
